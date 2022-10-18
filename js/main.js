@@ -25,6 +25,7 @@ function onClick(data) {
     if (board[row][col] == '') {
         data.target.attributes[0].nodeValue = "img/cross.png"
         board[row][col] = 'x'
+        checkWin('x')
         aiTurn()
     }
 }
@@ -45,9 +46,35 @@ function resetGame() {
 function aiTurn() {
     if (board[1][1] == '') {
         placeAI(1, 1)
-        return;
     }
-    
+    let h = 0 // horizontal loop number
+    let v = 0 // vertical loop number
+    let xs = 0
+    let os = 0
+    while (h <= 2) {
+        v = 0
+        while (v <= 2) {
+            let y = 0
+            if (board[v][h] != '') {
+                y++;
+                if (board[v][h] == 'x') {
+                    xs++;
+                } else {
+                    os++;
+                }
+                console.log(xs)
+                if (y == 3) {
+                    checkWin('o')
+                } else if (xs == 2) {
+                    console.log('x 2')
+                } else if (os == 2) {
+                    console.log('o 2')
+                }
+            }
+            v++;
+        }
+        h++;
+    }
 }
 
 function placeAI(row, col) {
@@ -56,7 +83,7 @@ function placeAI(row, col) {
 }
 
 function checkWin(player) {
-    for (let i = 0; i <= 2; i++)
+    for (let i = 0; i <= 2; i++) {
         if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {          // vertical check
             dataBoard[i][0].style.backgroundColor = '#42f563'
             dataBoard[i][1].style.backgroundColor = '#42f563'
@@ -68,6 +95,7 @@ function checkWin(player) {
             dataBoard[2][i].style.backgroundColor = '#42f563'
             stopGame()
         }
+    }
     if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {              // cross check
         dataBoard[0][0].style.backgroundColor = '#42f563'
         dataBoard[1][1].style.backgroundColor = '#42f563'
