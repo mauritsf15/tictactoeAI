@@ -52,6 +52,8 @@ function aiTurn() {
     let xs = 0
     let os = 0
     while (h <= 2) {
+        xs = 0
+        os = 0
         v = 0
         while (v <= 2) {
             let y = 0
@@ -59,10 +61,9 @@ function aiTurn() {
                 y++;
                 if (board[v][h] == 'x') {
                     xs++;
-                } else {
+                } else if (board[v][h] == 'x') {
                     os++;
                 }
-                console.log(xs)
                 if (y == 3) {
                     checkWin('o')
                 } else if (xs == 2) {
@@ -74,6 +75,31 @@ function aiTurn() {
             v++;
         }
         h++;
+    }
+    let xsh = 0;
+    let osh = 0;
+    for(let i = 0; i <= 2; i++) {
+        let z = 0;
+        if (board[0][i] != '') {
+            z++;
+            if (z == 3) {
+                checkWin('o')
+            } else if (board[0][i] == 'x') {
+                xsh++;
+            } else if (board[0][i] == 'o') {
+                osh++;
+            }
+            if (xsh == 2) {
+                for(let j = 0; j <= 2; i++) {
+                    if (board[0][j] == '') {
+                        placeAI(0, j)
+                    }
+                    j++;
+                }
+            } else if (osh == 2) {
+                console.log('o 2')
+            }
+        }
     }
 }
 
