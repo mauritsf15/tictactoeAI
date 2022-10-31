@@ -45,59 +45,31 @@ function resetGame() {
 
 function aiTurn() {
     if (board[1][1] == '') {
-        placeAI(1, 1)
+        placeAI(1,1);
+        return;
     }
-    let h = 0 // horizontal loop number
-    let v = 0 // vertical loop number
-    let xs = 0
-    let os = 0
-    while (h <= 2) {
-        xs = 0
-        os = 0
-        v = 0
-        while (v <= 2) {
-            let y = 0
-            if (board[v][h] != '') {
-                y++;
-                if (board[v][h] == 'x') {
-                    xs++;
-                } else if (board[v][h] == 'x') {
-                    os++;
-                }
-                if (y == 3) {
-                    checkWin('o')
-                } else if (xs == 2) {
-                    console.log('x 2')
-                } else if (os == 2) {
-                    console.log('o 2')
-                }
+    // check if two x's are in one row
+    let count = 0;
+    let totalcount = 0;
+    let empty = [];
+    for (let vertical = 0; vertical < 3; vertical++) {
+        for (let horizontal = 0; horizontal < 3; horizontal++) {
+            if (board[vertical][horizontal] == '') {
+                empty.push(`${vertical}`)
+                empty.push(`${horizontal + 1}`)
             }
-            v++;
-        }
-        h++;
-    }
-    let xsh = 0;
-    let osh = 0;
-    for(let i = 0; i <= 2; i++) {
-        let z = 0;
-        if (board[0][i] != '') {
-            z++;
-            if (z == 3) {
-                checkWin('o')
-            } else if (board[0][i] == 'x') {
-                xsh++;
-            } else if (board[0][i] == 'o') {
-                osh++;
-            }
-            if (xsh == 2) {
-                for(let j = 0; j <= 2; i++) {
-                    if (board[0][j] == '') {
-                        placeAI(0, j)
-                    }
-                    j++;
+            totalcount++;
+            if (board[vertical][horizontal] == 'x') {
+                count++;
+                if (count == 2) {
+                    placeAI(empty[1], empty[0])
+                    return;
                 }
-            } else if (osh == 2) {
-                console.log('o 2')
+            if (totalcount == 3) {
+                count = 0;
+                totalcount = 0;
+                empty = []
+            }
             }
         }
     }
