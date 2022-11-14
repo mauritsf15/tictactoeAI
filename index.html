@@ -41,13 +41,30 @@
                 <img src="img/trans.png" alt="" draggable="false">
             </div>
             <aside class="aside-left">
-                <h2>Click here</h2>
                 <br>
-                <p>to save your scores with your name!</p>
+                <h2>Leaderboard</h2>
                 <br>
-                <h3>Leaderboard</h3>
+                <h4>Top Wins</h4>
+                <br>
+                <ol>
+                    <li><span class="top-wins number-one playername">Your Name</span>: <span class="top-wins number-one amount">0</span></li>
+                    <li><span class="top-wins number-two playername">Your Name</span>: <span class="top-wins number-two amount">0</span></li>
+                    <li><span class="top-wins number-three playername">Your Name</span>: <span class="top-wins number-three amount">0</span></li>
+                </ol>
+                <br>
+                <h4>Top Win/Loss</h4>
+                <br>
+                <ol>
+                    <li><span class="top-wl number-one playername">Your Name</span>: <span class="top-wl number-one amount">0</span></li>
+                    <li><span class="top-wl number-two playername">Your Name</span>: <span class="top-wl number-two amount">0</span></li>
+                    <li><span class="top-wl number-three playername">Your Name</span>: <span class="top-wl number-three amount">0</span></li>
+                </ol>
+                <br>
+                <button class="save btn">Save your scores</button>
+                <p>&nbsp;</p>
             </aside>
             <aside class="aside-right">
+                <br>
                 <h2>Scores</h2>
                 <br>
                 <p>Wins: <span class="wins">0</span></p>
@@ -57,9 +74,19 @@
                 <p>Total: <span class="total">0</span></p>
             </aside>
         </main>
-        <footer>
-            <button class="reset-btn">RESET</button>
-        </footer>
+    </div>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Save your scores for the leaderboard!</h3>
+            <br>
+            <input type="text" placeholder="Your name">
+            <br>
+            <br>
+            <p class="error"></p>
+            <br>
+            <button class="btn submit">Submit!</button>
+        </div>
     </div>
     <script src="js/main.js"></script>
     <script src="js/sb.js"></script>

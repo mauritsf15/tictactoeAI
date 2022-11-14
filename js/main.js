@@ -1,5 +1,4 @@
 const articles = document.querySelectorAll('main div');
-const resetBtn = document.querySelector('.reset-btn');
 
 let board = [           // visual board for computer
     ['', '', ''],
@@ -21,8 +20,6 @@ let gameActive = true;
 let xboard = [[0, 0, 0], [0, 0, 0], [0, 0]];
 
 let turns = 0;  // counts how many turns there have been
-
-resetBtn.addEventListener('click', resetGame);  // resets all the buttons
 
 for (let i = 0; i < articles.length; i++) {             // passes data of clicked object
     articles[i].addEventListener('click', onClick);     // so it knows which place its been clicked
