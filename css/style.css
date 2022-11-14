@@ -9,7 +9,7 @@ body {
 
 .wrapper {
     background-color: #143264;
-    width: 360px;
+    width: 600px;
     margin: auto;
 }
 
@@ -28,8 +28,25 @@ header h1 {
 
 main {
     background-color: #143264;
-    width: 360px;
+    width: 600px;
     height: 360px;
+}
+
+aside {
+    height: 330px;
+    width: 100px;
+    margin: 10px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+.aside-left {
+    float: left;
+}
+
+.aside-right {
+    float: right;
 }
 
 article {
@@ -53,12 +70,13 @@ article img {
 }
 
 footer {
-    width: 360px;
+    width: 600px;
     height: 50px;
-    text-align: center;
 }
 
 footer button {
+    display: block;
+    margin: auto;
     margin-top: 10px;
     height: 30px;
     width: 120px;
