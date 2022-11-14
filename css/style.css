@@ -27,26 +27,36 @@ header h1 {
 }
 
 main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     background-color: #143264;
+    grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
     width: 600px;
     height: 360px;
 }
 
-aside {
-    height: 340px;
-    width: 100px;
-    margin: 10px;
+main > div {
+    background-color: #ffc1cc;
     border-radius: 10px;
-    color: white;
-    text-align: center;
 }
 
 .aside-left {
-    float: left;
+    background-color: #ffc1cc;
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
 }
 
 .aside-right {
-    float: right;
+    background-color: #ffc1cc;
+    grid-column: 5 / 6;
+    grid-row: 1 / 4;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
 }
 
 article {
@@ -58,12 +68,12 @@ article {
     border-radius: 10px;
 }
 
-article:hover {
+main > div:hover {
     background-color: #faa5d2;
     cursor: pointer;
 }
 
-article img {
+div img {
     height: 80px;
     width: 80px;
     padding: 10px;
@@ -90,9 +100,39 @@ footer button:hover {
 
 @media screen and (max-width: 500px) {
     main {
+        grid-template-columns: repeat(3, 1fr);
         width: 360px;
     }
+
+    .wrapper {
+        margin: auto;
+        display: block;
+        width: 360px;
+    }
+
+    .aside-right {
+        grid-column: 1 / 4;
+        grid-row: 5 / 7;
+    }
+
     .aside-left {
-        float: right;
+        grid-column: 1 / 4;
+        grid-row: 7 / 9;
+    }
+
+    aside p, aside h2 {
+        width: 100%;
+    }
+
+    .row-0 {
+        margin-left: 10px;
+    }
+
+    .row-2 {
+        margin-right: 10px;
+    }
+
+    footer {
+        width: 360px;
     }
 }

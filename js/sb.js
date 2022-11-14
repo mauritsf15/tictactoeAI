@@ -36,6 +36,18 @@ function updateBoard() {
     total.innerHTML = lt;
 }
 
+function resetBoard() {
+    playerName = localStorage.getItem('activePlayer');
+    if (playerName == null) {
+        playerName = '';
+    }
+    localStorage.setItem(`${playerName}wins`, 0);
+    localStorage.setItem(`${playerName}draws`, 0);
+    localStorage.setItem(`${playerName}losses`, 0);
+    localStorage.setItem(`${playerName}total`, 0);
+    updateBoard();
+}
+
 function addWin() {
     let lw = localStorage.getItem(`${playerName}wins`);
     if (lw == null) {
@@ -43,8 +55,9 @@ function addWin() {
         console.log('testi')
     } else {
         lw++;
-        localStorage.setitem(`${playerName}wins`, lw)
+        localStorage.setItem(`${playerName}wins`, lw)
     }
+    addGame();
     updateBoard();
 }
 
@@ -54,8 +67,9 @@ function addDraw() {
         localStorage.setItem(`${playerName}draws`, 1);
     } else {
         ld++;
-        localStorage.setitem(`${playerName}draws`, ld)
+        localStorage.setItem(`${playerName}draws`, ld)
     }
+    addGame();
     updateBoard();
 }
 
@@ -65,8 +79,9 @@ function addLoss() {
         localStorage.setItem(`${playerName}losses`, 1);
     } else {
         ll++;
-        localStorage.setitem(`${playerName}losses`, ll)
+        localStorage.setItem(`${playerName}losses`, ll)
     }
+    addGame();
     updateBoard();
 }
 
@@ -76,7 +91,7 @@ function addGame() {
         localStorage.setItem(`${playerName}total`, 1);
     } else {
         lt++;
-        localStorage.setitem(`${playerName}total`, lt)
+        localStorage.setItem(`${playerName}total`, lt)
     }
     updateBoard();
 }

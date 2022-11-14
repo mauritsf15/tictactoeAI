@@ -1,4 +1,4 @@
-const articles = document.querySelectorAll('article');
+const articles = document.querySelectorAll('main div');
 const resetBtn = document.querySelector('.reset-btn');
 
 let board = [           // visual board for computer
@@ -176,7 +176,6 @@ function aiTurn() {
             placed = true
         } else {                        // Not empty and game is still on? While loop!
             while (placed == false) {
-                console.log('hi')
                 g = Math.floor(Math.random() * 3)
                 h = Math.floor(Math.random() * 3)
                 if (board[g][h] == '') {
@@ -197,39 +196,59 @@ function placeAI(row, col) {
     document.querySelector(`.row-${row}.col-${col}`).children[0].attributes[0].nodeValue = "img/circle.png"
     board[row][col] = 'o';
     hboard[col][row] = 'o';
-    checkWin('o')
+    checkWin('o');
 }
 
 // Did someone win yet? Every turn, this is checked for respectably 'x' and 'o',
 // whichever gets mentioned when calling the function.
 function checkWin(player) {
-    if (turns == 8) {
-        stopGame();
-        return;
-    }
     for (let i = 0; i <= 2; i++) {
         if (board[i][0] == player && board[i][1] == player && board[i][2] == player) {          // vertical check
-            dataBoard[i][0].style.backgroundColor = '#42f563'
-            dataBoard[i][1].style.backgroundColor = '#42f563'
-            dataBoard[i][2].style.backgroundColor = '#42f563'
-            stopGame()
+            dataBoard[i][0].style.backgroundColor = '#42f563';
+            dataBoard[i][1].style.backgroundColor = '#42f563';
+            dataBoard[i][2].style.backgroundColor = '#42f563';
+            if (player == 'x') {
+                addWin();
+            } else if (player == 'o') {
+                addLoss();
+            }
+            stopGame();
         } else if (board[0][i] == player && board[1][i] == player && board[2][i] == player) {   // horizontal check
-            dataBoard[0][i].style.backgroundColor = '#42f563'
-            dataBoard[1][i].style.backgroundColor = '#42f563'
-            dataBoard[2][i].style.backgroundColor = '#42f563'
-            stopGame()
+            dataBoard[0][i].style.backgroundColor = '#42f563';
+            dataBoard[1][i].style.backgroundColor = '#42f563';
+            dataBoard[2][i].style.backgroundColor = '#42f563';
+            if (player == 'x') {
+                addWin();
+            } else if (player == 'o') {
+                addLoss();
+            }
+            stopGame();
         }
     }
     if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {              // cross check
-        dataBoard[0][0].style.backgroundColor = '#42f563'
-        dataBoard[1][1].style.backgroundColor = '#42f563'
-        dataBoard[2][2].style.backgroundColor = '#42f563'
-        stopGame()
+        dataBoard[0][0].style.backgroundColor = '#42f563';
+        dataBoard[1][1].style.backgroundColor = '#42f563';
+        dataBoard[2][2].style.backgroundColor = '#42f563';
+        if (player == 'x') {
+            addWin();
+        } else if (player == 'o') {
+            addLoss();
+        }
+        stopGame();
     } else if (board [0][2] == player && board[1][1] == player && board[2][0] == player) {      // cross check
-        dataBoard[0][2].style.backgroundColor = '#42f563'
-        dataBoard[1][1].style.backgroundColor = '#42f563'
-        dataBoard[2][0].style.backgroundColor = '#42f563'
-        stopGame()
+        dataBoard[0][2].style.backgroundColor = '#42f563';
+        dataBoard[1][1].style.backgroundColor = '#42f563';
+        dataBoard[2][0].style.backgroundColor = '#42f563';
+        if (player == 'x') {
+            addWin();
+        } else if (player == 'o') {
+            addLoss();
+        }
+        stopGame();
+    }
+    if (turns == 8) {
+        if (gameActive)
+        addDraw();
     }
 }
 
@@ -239,6 +258,6 @@ function stopGame() {       // changes visual board to everything filled
         ['n', 'n', 'n'],
         ['n', 'n', 'n'],
         ['n', 'n', 'n']
-    ]
+    ];
     gameActive = false;
 }
