@@ -33,7 +33,7 @@ main {
 }
 
 aside {
-    height: 330px;
+    height: 340px;
     width: 100px;
     margin: 10px;
     border-radius: 10px;
@@ -86,4 +86,13 @@ footer button {
 footer button:hover {
     background-color:antiquewhite;
     cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    main {
+        width: 360px;
+    }
+    .aside-left {
+        float: right;
+    }
 }
