@@ -7,13 +7,18 @@ const losses = document.querySelector('.losses');
 const total = document.querySelector('.total');
 
 const saveBtn = document.querySelector('.save')
-const modal = document.querySelector('.modal');
-const closeModalBtn = document.querySelector('.close');
+const submitModal = document.querySelector('.submit-modal');
+const closeSubmitModalBtn = document.querySelector('.submit-close');
 const submit = document.querySelector('.submit')
 
 const input = document.querySelector('input')
 const errorMsg = document.querySelector('.error')
 const errorLines = document.querySelectorAll('.errorline')
+
+const restartModal = document.querySelector('.restart-modal');
+const closeRestartModalBtn = document.querySelector('.restart-close');
+const restartBtn = document.querySelector('.restart')
+const restartText = document.querySelector('.end-game-message')
 
 let playerName;
 let gamesPlayed;
@@ -53,57 +58,67 @@ function resetBoard() {
 function addWin() {
     let lw = localStorage.getItem(`wins`);
     if (lw == null) {
-        localStorage.setItem(`${playerName}wins`, 1);
-        console.log('testi')
+        localStorage.setItem(`wins`, 1);
     } else {
         lw++;
-        localStorage.setItem(`${playerName}wins`, lw);
+        localStorage.setItem(`wins`, lw);
     }
     addGame();
-    updateBoard();
+    updateBoard('Congratiulations, you won!');
 }
 
 function addDraw() {
-    let ld = localStorage.getItem(`${playerName}draws`);
+    let ld = localStorage.getItem(`draws`);
     if (ld == null) {
-        localStorage.setItem(`${playerName}draws`, 1);
+        localStorage.setItem(`draws`, 1);
     } else {
         ld++;
-        localStorage.setItem(`${playerName}draws`, ld);
+        localStorage.setItem(`draws`, ld);
     }
     addGame();
     updateBoard();
+    openRestartModal("It's a tie!");
 }
 
 function addLoss() {
-    let ll = localStorage.getItem(`${playerName}losses`);
+    let ll = localStorage.getItem(`losses`);
     if (ll == null) {
-        localStorage.setItem(`${playerName}losses`, 1);
+        localStorage.setItem(`losses`, 1);
     } else {
         ll++;
-        localStorage.setItem(`${playerName}losses`, ll);
+        localStorage.setItem(`losses`, ll);
     }
     addGame();
     updateBoard();
+    openRestartModal('You lost...');
 }
 
 function addGame() {
-    let lt = localStorage.getItem(`${playerName}total`);
+    let lt = localStorage.getItem(`total`);
     if (lt == null) {
-        localStorage.setItem(`${playerName}total`, 1);
+        localStorage.setItem(`total`, 1);
     } else {
         lt++;
-        localStorage.setItem(`${playerName}total`, lt);
+        localStorage.setItem(`total`, lt);
     }
     updateBoard();
 }
 
 function openModal() {
-    modal.style.display = 'block';
+    submitModal.style.display = 'block';
 }
 
 function closeModal() {
-    modal.style.display = 'none';
+    submitModal.style.display = 'none';
+}
+
+function openRestartModal(text) {
+    restartText.innerHTML = text
+    restartModal.style.display = 'block';
+}
+
+function closeRestartModal() {
+    restartModal.style.display = 'none';
 }
 
 function submitName() {
@@ -124,6 +139,9 @@ function submitName() {
 
 updateBoard();
 
-closeModalBtn.addEventListener('click', closeModal)
+closeSubmitModalBtn.addEventListener('click', closeModal)
 saveBtn.addEventListener('click', openModal)
 submit.addEventListener('click', submitName)
+
+closeRestartModalBtn.addEventListener('click', closeRestartModal)
+restartBtn.addEventListener('click', resetGame)

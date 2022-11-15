@@ -75,6 +75,7 @@ function resetGame() {
     xboard = [[0, 0, 0], [0, 0, 0], [0, 0]];
     turns = 0;
     gameActive = true;
+    closeRestartModal();
 }
 
 // THE MAGIC! My first artificial intelligence ;)
