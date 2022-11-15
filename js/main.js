@@ -244,7 +244,7 @@ function checkWin(player) {
         }
         stopGame();
     }
-    if (turns == 8) {
+    if (turns > 7) {
         if (gameActive)
         addDraw();
     }
