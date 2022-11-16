@@ -28,16 +28,14 @@ const restartText = document.querySelector('.end-game-message');
 const twn1pn = document.querySelector('.top-wins-number-one-playername');
 const twn2pn = document.querySelector('.top-wins-number-two-playername');
 const twn3pn = document.querySelector('.top-wins-number-three-playername');
+const twn4pn = document.querySelector('.top-wins-number-four-playername');
+const twn5pn = document.querySelector('.top-wins-number-five-playername');
+
 const twn1a = document.querySelector('.top-wins-number-one-amount');
 const twn2a = document.querySelector('.top-wins-number-two-amount');
 const twn3a = document.querySelector('.top-wins-number-three-amount');
-
-const wln1pn = document.querySelector('.top-wl-number-one-playername');
-const wln2pn = document.querySelector('.top-wl-number-two-playername');
-const wln3pn = document.querySelector('.top-wl-number-three-playername');
-const wln1a = document.querySelector('.top-wl-number-one-amount');
-const wln2a = document.querySelector('.top-wl-number-two-amount');
-const wln3a = document.querySelector('.top-wl-number-three-amount');
+const twn4a = document.querySelector('.top-wins-number-four-amount');
+const twn5a = document.querySelector('.top-wins-number-five-amount');
 
 let playerName;
 let gamesPlayed;
@@ -88,19 +86,18 @@ function updateBoard() {
     }
     let playerList = localStorage.getItem('playerList');
     if (playerList) {
-        playerArr = playerList.split(',');
-        console.log(playerArr);
-        winsarrnames = []
-        winsarr = []
+        let playerArr = playerList.split(',');
+        let winsarrnames = []
+        let winsarr = []
         for (i = 0; i < playerArr.length; i++) {
             winsarrnames.push(`${playerArr[i]}:${parseInt(localStorage.getItem(`${playerArr[i]}wins`))}`);
             let j = parseInt(localStorage.getItem(`${playerArr[i]}wins`));
             winsarr.push(j);
         }
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < 3  && i < playerArr.length; i++) {
             let highest = Math.max(...winsarr);
             let found = winsarrnames.find(element => element.includes(highest));
-            //winsarr.
+            winsarrnames.splice(winsarrnames.indexOf(found, 0), 1)
             found = found.split(':');
             if (i == 0) {
                 twn1pn.innerHTML = found[0];
@@ -108,7 +105,17 @@ function updateBoard() {
             } else if (i == 1) {
                 twn2pn.innerHTML = found[0];
                 twn2a.innerHTML = found[1];
+            } else if (i == 2) {
+                twn3pn.innerHTML = found[0];
+                twn3a.innerHTML = found[1];
+            } else if (i == 3) {
+                twn4pn.innerHTML = found[0];
+                twn4a.innerHTML = found[1];
+            } else if (i == 4) {
+                twn5pn.innerHTML = found[0];
+                twn5a.innerHTML = found[1];
             }
+            winsarr.splice(winsarr.indexOf(parseInt(found[1]), 0), 1)
         }
     }
 }
