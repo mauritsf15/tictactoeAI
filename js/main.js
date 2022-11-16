@@ -91,6 +91,39 @@ function aiTurn() {
         }
     }
     // Checks for double x's in every three-in-a-row row
+    if (board[0][1] == 'x' && board[1][0] == 'x') {
+        if (board[0][0] == '') {
+            if (placed == false) {
+                placeAI(0, 0);
+                turns++;
+                return;
+            }
+        }
+    } else if (board[2][1] == 'x' && board[1][2] == 'x') {
+        if (board[2][2] == '') {
+            if (placed == false) {
+                placeAI(2, 2);
+                turns++;
+                return;
+            }
+        }
+    } else if (board[0][1] == 'x' && board[1][2] == 'x') {
+        if (board[0][2] == '') {
+            if (placed == false) {
+                placeAI(0, 2);
+                turns++;
+                return;
+            }
+        }
+    } else if (board[1][0] == 'x' && board[2][1] == 'x') {
+        if (board[2][0] == '') {
+            if (placed == false) {
+                placeAI(2, 0);
+                turns++;
+                return;
+            }
+        }
+    }
     for (let i = 0; i < xboard.length; i++) {
         for (let j = 0; j < xboard[i].length; j++) {
             if (xboard[i][j] == 2) {    // If it finds two x's,
