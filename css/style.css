@@ -4,18 +4,18 @@
 }
 
 body {
-    background-color: #143264;
+    background-color: #2D3047;
 }
 
 .wrapper {
-    background-color: #143264;
+    background-color: #2D3047;
     width: 800px;
     margin: auto;
 }
 
 header {
     height: 50px;
-    color: white;
+    color: #FFF2FF;
     margin-bottom: 10px;
     display: flex;
 }
@@ -29,7 +29,7 @@ header h1 {
 main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background-color: #143264;
+    background-color: #2D3047;
     grid-auto-rows: minmax(100px, auto);
     gap: 20px;
     width: 800px;
@@ -67,9 +67,10 @@ aside * {
 article {
     float: left;
     height: 100px;
-    background-color: #ffc1cc;
+    background-color: #ff88ff;
     margin: 10px;
     border-radius: 10px;
+    transition-duration: 0.5s;
 }
 
 main > div:hover {
@@ -84,11 +85,15 @@ div img {
 }
 
 .btn {
-    background-color: black;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: #6d41a7;
+    color: #FFF2FF;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Calibri;
+    font-size: 16px;
+    border: none;
     transition-duration: 0.5s;
+    cursor: pointer;
     height: 50px;
     width: 75%;
 }
@@ -98,8 +103,9 @@ div img {
 }
 
 .btn:hover {
-    background-color: rgb(124, 124, 124);
-    cursor: pointer;
+    background-color: #cfc0e4;
+    color: #3b3147;
+    font-weight: bold;
 }
 
 .submit-modal {

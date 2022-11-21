@@ -13,6 +13,7 @@ let hboard = [          // horizontal board for computer
 ];
 
 let gameActive = true;
+let turn = true;
 
 // For every possible three-in-a-row row
 // there is a value that increases when an X has been placed there
@@ -33,27 +34,30 @@ const dataBoard = [     // data board for special values
 
 // On click of article
 function onClick(data) {
-    let row = data.target.parentElement.className.charAt(4);    // finds the path to the row in class name
-    let col = data.target.parentElement.className.charAt(10);
-    if (board[row][col] == '') {
-        data.target.attributes[0].nodeValue = "img/cross.png";
-        board[row][col] = 'x';
-        hboard[col][row] = 'x';
-        // For the AI to recognize where there are 2 x's in a row or column (or diagonal)
-        xboard[0][row]++;   // Horizontal
-        xboard[1][col]++;   // Vertical
-        if (`${row}${col}` == '11') {
-            xboard[2][0]++;
-            xboard[2][1]++;
-        } else if (`${row}${col}` == '20' || `${row}${col}` == '02') {
-            xboard[2][1]++;
-        } else if (`${row}${col}` == '00' || `${row}${col}` == '22') {
-            xboard[2][0]++;
+    if (turn == true) {
+        let row = data.target.parentElement.className.charAt(4);    // finds the path to the row in class name
+        let col = data.target.parentElement.className.charAt(10);
+        if (board[row][col] == '') {
+            data.target.attributes[0].nodeValue = "img/cross.png";
+            board[row][col] = 'x';
+            hboard[col][row] = 'x';
+            // For the AI to recognize where there are 2 x's in a row or column (or diagonal)
+            xboard[0][row]++;   // Horizontal
+            xboard[1][col]++;   // Vertical
+            if (`${row}${col}` == '11') {
+                xboard[2][0]++;
+                xboard[2][1]++;
+            } else if (`${row}${col}` == '20' || `${row}${col}` == '02') {
+                xboard[2][1]++;
+            } else if (`${row}${col}` == '00' || `${row}${col}` == '22') {
+                xboard[2][0]++;
+            }
+            checkWin('x');
+            turns++;
+            turn = false;
+            setTimeout(aiTurn, 500);   // Give turn to the AI!
         }
-        checkWin('x');
-        aiTurn();   // Give turn to the AI!
     }
-    turns++;
 }
 
 // Resets the board and variables
@@ -74,6 +78,7 @@ function resetGame() {
     ];
     xboard = [[0, 0, 0], [0, 0, 0], [0, 0]];
     turns = 0;
+    turn = true;
     gameActive = true;
     closeRestartModal();
 }
@@ -87,6 +92,7 @@ function aiTurn() {
             placeAI(1,1);
             placed = true;
             turns++;
+            turn = true;
             return;
         }
     }
@@ -96,6 +102,7 @@ function aiTurn() {
             if (placed == false) {
                 placeAI(0, 0);
                 turns++;
+                turn = true;
                 return;
             }
         }
@@ -104,6 +111,7 @@ function aiTurn() {
             if (placed == false) {
                 placeAI(2, 2);
                 turns++;
+                turn = true;
                 return;
             }
         }
@@ -112,6 +120,7 @@ function aiTurn() {
             if (placed == false) {
                 placeAI(0, 2);
                 turns++;
+                turn = true;
                 return;
             }
         }
@@ -120,6 +129,7 @@ function aiTurn() {
             if (placed == false) {
                 placeAI(2, 0);
                 turns++;
+                turn = true;
                 return;
             }
         }
@@ -135,6 +145,7 @@ function aiTurn() {
                                     placeAI(j, k);
                                     placed = true;
                                     turns++;
+                                    turn = true;
                                     break;
                                 }
                             }
@@ -148,6 +159,7 @@ function aiTurn() {
                                     placeAI(k, j);
                                     placed = true;
                                     turns++;
+                                    turn = true;
                                     break;
                                 }
                             }
@@ -160,6 +172,7 @@ function aiTurn() {
                                 placeAI(2, 2);
                                 placed = true;
                                 turns++;
+                                turn = true;
                                 break;
                             }
                         } else if (board[0][0] == '') {
@@ -167,6 +180,7 @@ function aiTurn() {
                                 placeAI(0, 0);
                                 placed = true;
                                 turns++;
+                                turn = true;
                                 break;
                             }
                         }
@@ -176,6 +190,7 @@ function aiTurn() {
                                 placeAI(0, 2);
                                 placed = true;
                                 turns++;
+                                turn = true;
                                 break;
                             }
                         } else if (board[2][0] == '') {
@@ -183,6 +198,7 @@ function aiTurn() {
                                 placeAI(2, 0);
                                 placed = true;
                                 turns++;
+                                turn = true;
                                 break;
                             }
                         }
@@ -199,6 +215,7 @@ function aiTurn() {
                 placeAI(g, h)
                 placed = true
                 turns++;
+                turn = true;
                 return;
             }
         } else if (turns > 7) {         // Is it not empty? Check if the game is still running :p
@@ -214,6 +231,7 @@ function aiTurn() {
                         placeAI(g, h)
                         placed = true
                         turns++;
+                        turn = true;
                         return;
                     }
                 }
