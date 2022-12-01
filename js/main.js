@@ -55,7 +55,7 @@ function onClick(data) {
             checkWin('x');
             turns++;
             turn = false;
-            setTimeout(aiTurn, 500);   // Give turn to the AI!
+            setTimeout(aiTurn, 100);   // Give turn to the AI!
         }
     }
 }
