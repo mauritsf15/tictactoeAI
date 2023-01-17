@@ -39,6 +39,7 @@ main {
 main > div {
     background-color: #ffc1cc;
     border-radius: 10px;
+    filter: drop-shadow(-5px 10px 5px #222);
 }
 
 .aside-left {
@@ -49,6 +50,7 @@ main > div {
     margin-left: 10px;
     width: 200px;
     text-align: center;
+    filter: drop-shadow(-5px 10px 5px #222);
 }
 
 aside * {
@@ -62,6 +64,7 @@ aside * {
     border-radius: 10px;
     margin-right: 10px;
     text-align: center;
+    filter: drop-shadow(-5px 10px 5px #222);
 }
 
 article {
@@ -82,6 +85,7 @@ div img {
     height: 80px;
     width: 80px;
     padding: 10px;
+    filter: drop-shadow(-5px 10px 5px #222);
 }
 
 .btn {
